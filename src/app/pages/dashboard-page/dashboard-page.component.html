@@ -1,0 +1,21 @@
+<main class="p-x4">
+  <h1>Pile of shame</h1>
+  <h2>Overall</h2>
+  <app-progress-card variant="Wide" [progress]="progresses()"></app-progress-card>
+  <h2>Systems</h2>
+  <button (click)="addSystem.open()">Add system</button>
+  <div class="grid-4 gap-4">
+    @for (system of data(); track $index) {
+    <div class="g-col">
+      <a routerLink="systems/{{ system.id }}">
+        <app-progress-card
+          [name]="system.name"
+          [progress]="getProcesses(system)"
+        ></app-progress-card>
+      </a>
+    </div>
+    }
+  </div>
+</main>
+
+<app-add-system-modal #addSystem></app-add-system-modal>

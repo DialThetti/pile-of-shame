@@ -1,0 +1,47 @@
+@if(collapsed){
+<div class="p-x2 p-y2 card">
+  <div class="d-flex justify-content-between">
+    <button (click)="collapsed = !collapsed">Show more</button>
+  </div>
+</div>
+}@else {
+
+<div class="p-x2 p-y2 card">
+  <div class="d-flex justify-content-between p-b2">
+    <button (click)="collapsed = !collapsed">Show less</button>
+    <button (click)="addUnit.open()">Add Unit</button>
+  </div>
+  <ul>
+    @for(unit of units; track $index){
+    <li>
+      <div class="d-flex justify-content-between">
+        <span>
+          <span>
+            {{ unit.name }}
+          </span>
+          @if(unit.meta.paintingYear){
+          <span style="color: grey"
+            >(<i class="bi bi-clock"></i>{{ unit.meta.paintingYear }})
+          </span>
+          }
+          <i class="bi bi-pencil" (click)="addMeta(unit)"></i>
+        </span>
+        <span>
+          {{ unit.progress.current }}/{{ unit.progress.max }}
+          <button (click)="increment(unit)">+</button></span
+        >
+      </div>
+      <div>
+        <progress
+          [value]="unit.progress.current"
+          [max]="unit.progress.max"
+          min="0"
+          style="width: 100%"
+        ></progress>
+      </div>
+    </li>
+    }
+  </ul>
+</div>
+}
+<app-add-unit-modal #addUnit [systemId]="systemId" [fraction]="fractionId"></app-add-unit-modal>

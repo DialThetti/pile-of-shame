@@ -1,0 +1,56 @@
+<div class="p-x2 p-y2 card">
+  @if(name){
+  <span>{{ name }}</span>
+  } @if(isMulti(progress)){
+  <div class="m-y2 bar d-flex">
+    @for(c of progress; track $index){
+    <div
+      class="entry"
+      [ngStyle]="{
+        width: (100 * c.current) / max() + '%',
+        'background-color': 'var(--color-' + ($index % 4) + ')'
+      }"
+    ></div>
+    }
+  </div>
+  <div class="p-y4">
+    <div class="d-flex justify-content-between">
+      <span>Painted</span>
+      <span style="font-weight: 700">
+        {{ current() }}
+      </span>
+    </div>
+    <div class="d-flex justify-content-between">
+      <span>Models</span>
+      <span style="font-weight: 700">
+        {{ max() }}
+      </span>
+    </div>
+  </div>
+  }@else{
+
+  <div class="m-y2 bar d-flex">
+    <div
+      class="entry"
+      [ngStyle]="{
+        width: (100 * progress.current) / max() + '%',
+        'background-color': 'var(--color-0)'
+      }"
+    ></div>
+  </div>
+  <div class="p-y4">
+    <div class="d-flex justify-content-between">
+      <span>Painted</span>
+      <span style="font-weight: 700">
+        {{ current() }}
+      </span>
+    </div>
+    <div class="d-flex justify-content-between">
+      <span>Models</span>
+      <span style="font-weight: 700">
+        {{ max() }}
+      </span>
+    </div>
+  </div>
+  }
+</div>

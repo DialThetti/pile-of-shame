@@ -1,0 +1,25 @@
+@use './base/spacings';
+@use './base/grid';
+@use './base/size';
+@use './base/reboot';
+@use './base/typography';
+//
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+a .card:hover {
+  -webkit-box-shadow: 10px 10px 8px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 10px 10px 8px 0px rgba(0, 0, 0, 0.4);
+  margin-top: -5px;
+  margin-bottom: 5px;
+}
+
+.card {
+  background-color: white;
+  border: 1px solid black;
+  -webkit-box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.4);
+}
+
+body {
+  background-color: #efefef;
+}

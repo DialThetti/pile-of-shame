@@ -1,0 +1,25 @@
+@use './style/dial';
+
+/* You can add global styles to this file, and also import other style files */
+.d-flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+:root {
+  --color-0: #fecaca;
+  --color-1: #fca5a5;
+  --color-2: #f87171;
+  --color-3: #ef4444;
+}

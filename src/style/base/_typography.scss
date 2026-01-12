@@ -1,0 +1,32 @@
+body {
+  line-height: 1.4rem;
+}
+
+.h1,
+h1 {
+  font-weight: bold;
+  font-size: 1.125rem;
+}
+.h2,
+h2 {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.p,
+p {
+  font-size: 1rem;
+}
+.p2 {
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    color: var(--secondary);
+  }
+}

@@ -1,0 +1,130 @@
+@use '../abstracts/variables' as VARIABLES;
+
+$directions: (
+  l: left,
+  r: right,
+  t: top,
+  b: bottom,
+);
+
+$breakpoints: (
+  xs: VARIABLES.$screen-xs,
+  sm: VARIABLES.$screen-sm,
+  md: VARIABLES.$screen-md,
+  lg: VARIABLES.$screen-lg,
+  xl: VARIABLES.$screen-xl,
+);
+
+$sizes: (
+  0: VARIABLES.$spacing-0,
+  1: VARIABLES.$spacing-1,
+  2: VARIABLES.$spacing-2,
+  3: VARIABLES.$spacing-3,
+  4: VARIABLES.$spacing-4,
+  5: VARIABLES.$spacing-5,
+  6: VARIABLES.$spacing-6,
+  8: VARIABLES.$spacing-8,
+  a: auto,
+);
+
+@each $size, $remSize in $sizes {
+  /**
+  + Padding and margin, based on rule (p|m)(-breakpoint)?-(direction)(size)
+  */
+  @each $short, $direction in $directions {
+    .p-#{$short}#{$size} {
+      padding-#{$direction}: $remSize !important;
+    }
+    .m-#{$short}#{$size} {
+      margin-#{$direction}: $remSize !important;
+    }
+
+    @each $breakpoint, $width in $breakpoints {
+      @media (min-width: $width) {
+        .p-#{$breakpoint}-#{$short}#{$size} {
+          padding-#{$direction}: $remSize !important;
+        }
+        .m-#{$breakpoint}-#{$short}#{$size} {
+          margin-#{$direction}: $remSize !important;
+        }
+      }
+    }
+  }
+
+  .p-x#{$size},
+  .p-xy#{$size} {
+    padding-right: $remSize !important;
+    padding-left: $remSize !important;
+  }
+  .m-x#{$size},
+  .m-xy#{$size} {
+    margin-right: $remSize !important;
+    margin-left: $remSize !important;
+  }
+
+  .p-y#{$size},
+  .p-xy#{$size} {
+    padding-top: $remSize !important;
+    padding-bottom: $remSize !important;
+  }
+  .m-y#{$size},
+  .m-xy#{$size} {
+    margin-top: $remSize !important;
+    margin-bottom: $remSize !important;
+  }
+
+  @each $breakpoint, $width in $breakpoints {
+    @media (min-width: $width) {
+      .p-#{$breakpoint}-x#{$size},
+      .p-#{$breakpoint}-xy#{$size} {
+        padding-right: $remSize !important;
+        padding-left: $remSize !important;
+      }
+      .m-#{$breakpoint}-x#{$size},
+      .m-#{$breakpoint}-xy#{$size} {
+        margin-right: $remSize !important;
+        margin-left: $remSize !important;
+      }
+
+      .p-#{$breakpoint}-y#{$size},
+      .p-#{$breakpoint}-xy#{$size} {
+        padding-top: $remSize !important;
+        padding-bottom: $remSize !important;
+      }
+      .m-#{$breakpoint}-y#{$size},
+      .m-#{$breakpoint}-xy#{$size} {
+        margin-top: $remSize !important;
+        margin-bottom: $remSize !important;
+      }
+    }
+  }
+
+  /**
+  * gaps
+  */
+  .gap-#{$size} {
+    gap: $remSize;
+  }
+
+  .gap-x#{$size} {
+    column-gap: $remSize;
+  }
+  .gap-y#{$size} {
+    row-gap: $remSize;
+  }
+
+  @each $breakpoint, $width in $breakpoints {
+    @media (min-width: $width) {
+      .gap-#{$breakpoint}-#{$size} {
+        gap: $remSize;
+      }
+
+      .gap-#{$breakpoint}-x#{$size} {
+        column-gap: $remSize;
+      }
+      .gap-#{$breakpoint}-y#{$size} {
+        row-gap: $remSize;
+      }
+    }
+  }
+}

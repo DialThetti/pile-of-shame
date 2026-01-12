@@ -1,0 +1,18 @@
+<div class="background-layer" [ngClass]="{ hidden: !visible }">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="d-flex justify-content-between">
+        <span> Add System </span>
+        <button (click)="visible = false">Close</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="form" (submit)="submit()">
+        <input type="text" formControlName="name" />
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button (click)="submit()">Submit</button>
+    </div>
+  </div>
+</div>
