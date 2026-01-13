@@ -1,0 +1,37 @@
+.btn {
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  color: var(--primary-foreground);
+
+  &.btn-ghost {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--primary-background);
+    &:hover {
+      color: var(--primary-background-hover);
+    }
+  }
+  &.btn-primary {
+    background-color: var(--primary-background);
+    border-color: var(--primary-background);
+
+    &[disabled] {
+      background-color: var(--primary-background-disabled);
+    }
+
+    &:hover {
+      background-color: var(--primary-background-hover);
+      border-color: var(--primary-background-hover);
+    }
+  }
+
+  &.btn-secondary {
+    background-color: var(--secondary-background);
+    color: var(--secondary-foreground);
+    &:hover {
+      background-color: var(--secondary-background-hover);
+      color: var(--primary-foreground-hover);
+    }
+  }
+}

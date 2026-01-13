@@ -24,7 +24,7 @@ export class AddUnitModalComponent {
 
   constructor(private store: Store) {}
   open() {
-    this.form.reset();
+    this.form.reset({ name: '', max: 10 });
     this.visible = true;
   }
 

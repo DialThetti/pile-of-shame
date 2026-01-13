@@ -1,3 +1,11 @@
-ul {
-  list-style-type: none;
+.appendix-bottom {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top: 0;
+}
+
+.circle {
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
 }

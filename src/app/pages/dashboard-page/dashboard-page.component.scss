@@ -1,0 +1,12 @@
+.add-button {
+  border: 4px dashed var(--primary-background);
+  color: var(--primary-background);
+  background-color: transparent;
+  cursor: pointer;
+  min-height: 145px;
+
+  &:hover {
+    border-color: var(--primary-background-hover);
+    color: var(--primary-background-hover);
+  }
+}

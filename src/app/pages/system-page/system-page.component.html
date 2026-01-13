@@ -2,22 +2,24 @@
   @if(system(); as currentSystem){
   <div class="d-flex justify-content-between p-y4 gap-4">
     <h1>
-      <button routerLink="../..">Back</button
+      <button class="btn btn-ghost" routerLink="../.."><i class="bi bi-chevron-left"></i></button
       ><span>
         {{ currentSystem.name }}
       </span>
     </h1>
   </div>
+  <p class="muted-text" style="height: 1rem"></p>
+  <h2>Overall</h2>
   <app-progress-card variant="Wide" [progress]="progresses()"></app-progress-card>
   <div class="d-flex justify-content-between p-y4">
     <h2>Fractions</h2>
-    <button class="btn btn-primary" (click)="addFraction.open()">Add Fraction</button>
   </div>
   <div>
-    <div class="grid-4 gap-4">
+    <div class="grid gap-4">
       @for (fraction of system()?.fractions??[]; track $index) {
-      <div class="g-col">
+      <div class="g-col xs12 md6 lg3">
         <app-progress-card
+          cardClass="appendix-top"
           [name]="fraction.name"
           [progress]="getFractionProcess(fraction)"
         ></app-progress-card>
@@ -29,6 +31,9 @@
       </div>
 
       }
+      <div class="g-col xs12 md6 lg3 d-flex">
+        <button (click)="addFraction.open()" class="btn w100 add-button">Add Fraction</button>
+      </div>
     </div>
   </div>
   }

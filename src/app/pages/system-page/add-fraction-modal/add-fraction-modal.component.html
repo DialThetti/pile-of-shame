@@ -3,16 +3,20 @@
     <div class="modal-header">
       <div class="d-flex justify-content-between">
         <span> Add Fraction </span>
-        <button (click)="visible = false">Close</button>
+        <button class="btn btn-ghost" (click)="visible = false"><i class="bi bi-x-lg"></i></button>
       </div>
     </div>
     <div class="modal-body">
       <form [formGroup]="form" (submit)="submit()">
-        <input type="text" formControlName="name" />
+        <div class="input-row">
+          <label for="fraction-name">Name</label>
+          <input id="fraction-name" type="text" formControlName="name" />
+        </div>
       </form>
     </div>
-    <div class="modal-footer">
-      <button (click)="submit()">Submit</button>
+    <div class="modal-footer d-flex gap-4 justify-content-end">
+      <button class="btn btn-secondary" (click)="visible = false">Cancel</button>
+      <button class="btn btn-primary" (click)="submit()" [disabled]="form.invalid">Submit</button>
     </div>
   </div>
 </div>

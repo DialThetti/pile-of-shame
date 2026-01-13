@@ -1,0 +1,9 @@
+.card {
+  background-color: var(--card-background);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  -webkit-box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease-in-out;
+}

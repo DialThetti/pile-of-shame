@@ -3,10 +3,11 @@ import { Unit } from '../../../core/models/system.model';
 import { AddUnitModalComponent } from '../add-unit-modal/add-unit-modal.component';
 import { Store } from '@ngrx/store';
 import { SystemActions } from '../../../core/state/system/system.actions';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-unit-accordion',
-  imports: [AddUnitModalComponent],
+  imports: [AddUnitModalComponent, NgStyle],
   templateUrl: './unit-accordion.component.html',
   styleUrl: './unit-accordion.component.scss',
 })

@@ -1,8 +1,16 @@
+@use './abstracts/theme';
 @use './base/spacings';
 @use './base/grid';
 @use './base/size';
 @use './base/reboot';
 @use './base/typography';
+
+@use './components/button';
+@use './components/card';
+@use './components/progress';
+@use './components/lists';
+@use './components/modal';
+@use './forms/index';
 //
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 
@@ -13,13 +21,11 @@ a .card:hover {
   margin-bottom: 5px;
 }
 
-.card {
-  background-color: white;
-  border: 1px solid black;
-  -webkit-box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.4);
-  box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.4);
+body {
+  background-color: var(--base-background);
+  color: var(--base-foreground);
 }
 
-body {
-  background-color: #efefef;
+.circle {
+  border-radius: 50%;
 }

@@ -1,0 +1,21 @@
+input {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: var(--input);
+  color: var(--base-foreground);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  &:active,
+  &:focus,
+  &:focus-visible {
+    border-color: var(--primary-background);
+  }
+
+  &.invalid,
+  &.ng-invalid {
+    border-color: var(--danger);
+  }
+}

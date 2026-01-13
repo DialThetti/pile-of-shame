@@ -1,15 +1,18 @@
 @if(collapsed){
-<div class="p-x2 p-y2 card">
-  <div class="d-flex justify-content-between">
-    <button (click)="collapsed = !collapsed">Show more</button>
+<div class="card appendix-bottom">
+  <div class="d-flex justify-content-between p-y2">
+    <button class="btn btn-ghost w100" (click)="collapsed = !collapsed">
+      Show more<i class="p-l2 bi bi-chevron-double-down"></i>
+    </button>
   </div>
 </div>
 }@else {
 
-<div class="p-x2 p-y2 card">
-  <div class="d-flex justify-content-between p-b2">
-    <button (click)="collapsed = !collapsed">Show less</button>
-    <button (click)="addUnit.open()">Add Unit</button>
+<div class="card appendix-bottom">
+  <div class="d-flex justify-content-between p-y2">
+    <button class="btn btn-ghost w100" (click)="collapsed = !collapsed">
+      Show less<i class="p-l2 bi bi-chevron-double-up"></i>
+    </button>
   </div>
   <ul>
     @for(unit of units; track $index){
@@ -20,27 +23,34 @@
             {{ unit.name }}
           </span>
           @if(unit.meta.paintingYear){
-          <span style="color: grey"
-            >(<i class="bi bi-clock"></i>{{ unit.meta.paintingYear }})
-          </span>
+          <span class="muted-text">(<i class="bi bi-clock"></i>{{ unit.meta.paintingYear }}) </span>
           }
-          <i class="bi bi-pencil" (click)="addMeta(unit)"></i>
+          <button class="btn btn-ghost">
+            <i class="bi bi-pencil" (click)="addMeta(unit)"></i>
+          </button>
         </span>
         <span>
           {{ unit.progress.current }}/{{ unit.progress.max }}
-          <button (click)="increment(unit)">+</button></span
-        >
+          <button class="btn btn-primary circle" (click)="increment(unit)">
+            <i class="bi bi-plus"></i></button
+        ></span>
       </div>
       <div>
-        <progress
-          [value]="unit.progress.current"
-          [max]="unit.progress.max"
-          min="0"
-          style="width: 100%"
-        ></progress>
+        <div class="progress-bar slim w100">
+          <div
+            class="entry"
+            [ngStyle]="{
+              width: (100 * unit.progress.current) / unit.progress.max + '%',
+              'background-color': 'var(--color-' + ($index % 4) + ')'
+            }"
+          ></div>
+        </div>
       </div>
     </li>
     }
+    <li>
+      <button class="w100 btn btn-ghost" (click)="addUnit.open()">Add Unit</button>
+    </li>
   </ul>
 </div>
 }

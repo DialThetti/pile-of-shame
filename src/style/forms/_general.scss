@@ -1,0 +1,10 @@
+.input-row {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  color: var(--muted-foreground);
+  padding-bottom: 0.25rem;
+  font-size: 0.875rem;
+}

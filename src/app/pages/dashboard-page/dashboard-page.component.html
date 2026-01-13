@@ -1,12 +1,26 @@
 <main class="p-x4">
-  <h1>Pile of shame</h1>
+  <div class="d-flex justify-content-between p-y4 gap-4">
+    <div>
+      <h1>Pile of shame</h1>
+      <p class="muted-text">
+        Keep track of your achievements and on your evergrowing pile of shame.
+      </p>
+    </div>
+    <a
+      download="pile-of-shame_{{ now | date : 'yyyy_MM_dd' }}.json"
+      [href]="uri()"
+      class="btn btn-ghost"
+      ><i class="bi bi-cloud-download p-r2"></i>Export</a
+    >
+  </div>
   <h2>Overall</h2>
   <app-progress-card variant="Wide" [progress]="progresses()"></app-progress-card>
-  <h2>Systems</h2>
-  <button (click)="addSystem.open()">Add system</button>
-  <div class="grid-4 gap-4">
+  <div class="d-flex justify-content-between p-y4">
+    <h2>Systems</h2>
+  </div>
+  <div class="grid gap-4">
     @for (system of data(); track $index) {
-    <div class="g-col">
+    <div class="g-col xs12 md6 lg3">
       <a routerLink="systems/{{ system.id }}">
         <app-progress-card
           [name]="system.name"
@@ -15,6 +29,9 @@
       </a>
     </div>
     }
+    <div class="g-col xs12 md6 lg3 d-flex">
+      <button (click)="addSystem.open()" class="btn w100 add-button">Add system</button>
+    </div>
   </div>
 </main>
 
