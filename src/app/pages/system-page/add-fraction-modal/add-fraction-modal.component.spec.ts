@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddFractionModalComponent } from './add-fraction-modal.component';
+import { provideMockStore } from '@ngrx/store/testing';
+import { initialState, systemStateKey } from '../../../core/state/system/system.reducer';
 
 describe('AddFractionsModalComponent', () => {
   let component: AddFractionModalComponent;
@@ -8,6 +10,7 @@ describe('AddFractionsModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [provideMockStore({ initialState: { [systemStateKey]: initialState } })],
       imports: [AddFractionModalComponent],
     }).compileComponents();
 

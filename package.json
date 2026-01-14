@@ -6,9 +6,11 @@
     "start": "ng serve --port 4201",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "github-build": "ng build --configuration docs --base-href 'https://dialthetti.github.io/pile-of-shame/' "
+    "test": "jest",
+    "test:ci": "jest",
+    "github-build": "ng build --configuration production --base-href 'https://dialthetti.github.io/pile-of-shame/' "
   },
+  "type": "module",
   "prettier": {
     "printWidth": 100,
     "singleQuote": true,
@@ -39,9 +41,25 @@
   "devDependencies": {
     "@angular/build": "^21.0.3",
     "@angular/cli": "^21.0.3",
-    "@angular/compiler-cli": "^21.0.0",
+    "@angular/compiler-cli": "^21.0.8",
+    "@types/jest": "^30.0.0",
+    "babel-jest": "^30.2.0",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "jest-junit": "^16.0.0",
+    "jest-marbles": "^3.1.1",
+    "jest-preset-angular": "~16.0.0",
     "jsdom": "^27.1.0",
+    "ng-mocks": "^14.15.0",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
+  },
+  "overrides": {
+    "ng-mocks": {
+      "@angular/common": "$@angular/common",
+      "@angular/forms": "$@angular/forms",
+      "@angular/platform-browser": "$@angular/platform-browser",
+      "@angular/core": "$@angular/core"
+    }
   }
 }
