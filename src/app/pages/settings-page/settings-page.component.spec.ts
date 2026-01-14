@@ -1,25 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddUnitModalComponent } from './add-unit-modal.component';
+import { SettingsPageComponent } from './settings-page.component';
 import { provideMockStore } from '@ngrx/store/testing';
 import {
   initialState,
   systemStateKey,
-} from '../../../core/state/system/system.reducer';
+} from '../../core/state/system/system.reducer';
+import { provideRouter } from '@angular/router';
 
-describe('AddUnitModalComponent', () => {
-  let component: AddUnitModalComponent;
-  let fixture: ComponentFixture<AddUnitModalComponent>;
+describe('SettingsPageComponent', () => {
+  let component: SettingsPageComponent;
+  let fixture: ComponentFixture<SettingsPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [
+        provideRouter([]),
         provideMockStore({ initialState: { [systemStateKey]: initialState } }),
       ],
-      imports: [AddUnitModalComponent],
+      imports: [SettingsPageComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AddUnitModalComponent);
+    fixture = TestBed.createComponent(SettingsPageComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

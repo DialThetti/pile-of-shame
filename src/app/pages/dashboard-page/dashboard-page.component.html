@@ -6,14 +6,15 @@
         Keep track of your achievements and on your evergrowing pile of shame.
       </p>
     </div>
-    <a
-      download="pile-of-shame_{{ now | date: 'yyyy_MM_dd' }}.json"
-      [href]="uri()"
-      class="btn btn-ghost"
-      ><i class="bi bi-cloud-download p-r2"></i>Export</a
-    >
+    <div>
+      <a class="btn btn-ghost" routerLink="settings"
+        ><i class="bi bi-gear m-r2"></i>Settings</a
+      >
+    </div>
   </div>
-  <h2>Overall</h2>
+  <div class="d-flex justify-content-between p-y4">
+    <h2>Overall</h2>
+  </div>
   <app-progress-card
     variant="Wide"
     [progress]="progresses()"></app-progress-card>

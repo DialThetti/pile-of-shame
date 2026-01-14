@@ -26,7 +26,7 @@
                   >(<i class="bi bi-clock"></i>{{ unit.meta.paintingYear }})
                 </span>
               }
-              <button class="btn btn-ghost" (click)="addMeta(unit)">
+              <button class="btn btn-ghost" (click)="addUnit.open(unit)">
                 <i class="bi bi-pencil"></i>
               </button>
             </span>
@@ -57,7 +57,7 @@
     </ul>
   </div>
 }
-<app-add-unit-modal
+<app-unit-modal
   #addUnit
   [systemId]="systemId"
-  [fraction]="fractionId"></app-add-unit-modal>
+  [fraction]="fractionId"></app-unit-modal>

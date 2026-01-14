@@ -5,28 +5,16 @@ import { RouterLink } from '@angular/router';
 import { Progress, System } from '../../core/models/system.model';
 import { Store } from '@ngrx/store';
 import { SystemSelectors } from '../../core/state/system/system.selectors';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard-page',
-  imports: [
-    ProgressCardComponent,
-    AddSystemModalComponent,
-    RouterLink,
-    DatePipe,
-  ],
+  imports: [ProgressCardComponent, AddSystemModalComponent, RouterLink],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.scss',
 })
 export class DashboardPageComponent {
   data = this.store.selectSignal(SystemSelectors.selectEntities);
 
-  now = new Date();
-  uri = computed(
-    () =>
-      'data:application/json;charset=UTF-8,' +
-      encodeURIComponent(JSON.stringify(this.data()))
-  );
   progresses = computed(
     () => this.data()?.map(entry => this.getProcesses(entry)) ?? []
   );

@@ -52,6 +52,8 @@
   --color-0: oklch(0.52 0.105 223.128);
 
   --danger: oklch(0.704 0.191 22.216);
+  --danger-hover: hsl(from var(--danger) h s calc(l + 10));
+  --danger-disabled: hsl(from var(--danger) h 40 l);
 }
 
 body.light {

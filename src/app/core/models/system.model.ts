@@ -1,3 +1,5 @@
+import { Unit } from './unit.model';
+
 export interface System {
   id: string;
   name: string;
@@ -5,19 +7,12 @@ export interface System {
 }
 
 export interface Fraction {
+  id: string;
   name: string;
   units: Unit[];
 }
 
-export interface Unit {
-  name: string;
-  progress: Progress;
-  meta: {
-    paintingYear?: number;
-  };
-}
-
-export interface Progress {
-  max: number;
-  current: number;
-}
+/**
+ * @deprecated
+ */
+export * from './unit.model';

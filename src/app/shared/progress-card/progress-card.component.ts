@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { Progress } from './types';
-import { NgStyle, PercentPipe } from '@angular/common';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-progress-card',
-  imports: [NgStyle, PercentPipe],
+  imports: [NgStyle],
   templateUrl: './progress-card.component.html',
   styleUrl: './progress-card.component.scss',
 })
