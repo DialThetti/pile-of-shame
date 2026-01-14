@@ -3,7 +3,9 @@
     <div class="modal-header">
       <div class="d-flex justify-content-between">
         <span> Add Fraction </span>
-        <button class="btn btn-ghost" (click)="visible = false"><i class="bi bi-x-lg"></i></button>
+        <button class="btn btn-ghost" (click)="visible = false">
+          <i class="bi bi-x-lg"></i>
+        </button>
       </div>
     </div>
     <div class="modal-body">
@@ -15,8 +17,15 @@
       </form>
     </div>
     <div class="modal-footer d-flex gap-4 justify-content-end">
-      <button class="btn btn-secondary" (click)="visible = false">Cancel</button>
-      <button class="btn btn-primary" (click)="submit()" [disabled]="form.invalid">Submit</button>
+      <button class="btn btn-secondary" (click)="visible = false">
+        Cancel
+      </button>
+      <button
+        class="btn btn-primary"
+        (click)="submit()"
+        [disabled]="form.invalid">
+        Submit
+      </button>
     </div>
   </div>
 </div>

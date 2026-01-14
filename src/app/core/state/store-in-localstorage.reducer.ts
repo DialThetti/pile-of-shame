@@ -21,8 +21,8 @@ export const storeInLocalStorage =
       const newState = reducer(state, action);
       const toStore: Record<string, unknown> = {};
       features
-        .filter((feature) => newState[feature])
-        .forEach((feature) => {
+        .filter(feature => newState[feature])
+        .forEach(feature => {
           toStore[feature] = { ...newState[feature] };
         });
       if (Object.keys(toStore).length !== 0) {

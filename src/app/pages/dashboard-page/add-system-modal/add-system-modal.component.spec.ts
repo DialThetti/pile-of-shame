@@ -3,7 +3,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AddSystemModalComponent } from './add-system-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideMockStore } from '@ngrx/store/testing';
-import { initialState, systemStateKey } from '../../../core/state/system/system.reducer';
+import {
+  initialState,
+  systemStateKey,
+} from '../../../core/state/system/system.reducer';
 
 describe('AddSystemModalComponent', () => {
   let component: AddSystemModalComponent;
@@ -11,7 +14,9 @@ describe('AddSystemModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [provideMockStore({ initialState: { [systemStateKey]: initialState } })],
+      providers: [
+        provideMockStore({ initialState: { [systemStateKey]: initialState } }),
+      ],
       imports: [AddSystemModalComponent, ReactiveFormsModule],
     }).compileComponents();
 
