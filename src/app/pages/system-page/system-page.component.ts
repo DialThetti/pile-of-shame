@@ -1,7 +1,7 @@
 import { Component, computed, input } from '@angular/core';
 import { ProgressCardComponent } from '../../shared/progress-card/progress-card.component';
 import { RouterLink } from '@angular/router';
-import { Fraction, Progress, System } from '../../core/models/system.model';
+import { Fraction, Progress } from '../../core/models/system.model';
 import { AddFractionModalComponent } from './add-fraction-modal/add-fraction-modal.component';
 import { UnitAccordionComponent } from './unit-accordion/unit-accordion.component';
 import { Store } from '@ngrx/store';

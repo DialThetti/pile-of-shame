@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardPageComponent } from './dashboard-page.component';
+import { provideMockStore } from '@ngrx/store/testing';
+import { initialState, systemStateKey } from '../../core/state/system/system.reducer';
 
 describe('DashboardPageComponent', () => {
   let component: DashboardPageComponent;
@@ -8,9 +10,9 @@ describe('DashboardPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DashboardPageComponent]
-    })
-    .compileComponents();
+      providers: [provideMockStore({ initialState: { [systemStateKey]: initialState } })],
+      imports: [DashboardPageComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DashboardPageComponent);
     component = fixture.componentInstance;

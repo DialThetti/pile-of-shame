@@ -8,16 +8,30 @@ describe('ProgressCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProgressCardComponent]
-    })
-    .compileComponents();
+      imports: [ProgressCardComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ProgressCardComponent);
     component = fixture.componentInstance;
-    await fixture.whenStable();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('single progress', () => {
+    beforeEach(async () => {
+      component.progress = { current: 2, max: 5 };
+      await fixture.whenStable();
+    });
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+  });
+
+  describe('multi progress', () => {
+    beforeEach(async () => {
+      component.progress = [];
+      await fixture.whenStable();
+    });
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
   });
 });
