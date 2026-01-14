@@ -1,0 +1,60 @@
+<div class="background-layer" [ngClass]="{ hidden: !visible }">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="d-flex justify-content-between">
+        <span class="p2"> Add Unit </span>
+        <button class="btn btn-ghost" (click)="close()">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="form" (submit)="submit()">
+        <div class="input-row p-b4">
+          <label for="unit-name">Name</label>
+          <input id="unit-name" type="text" formControlName="name" />
+        </div>
+        <div class="grid gap-4">
+          <div class="g-col sm6">
+            <div class="input-row p-b4">
+              <label for="unit-current">Number of painted</label>
+              <input
+                id="unit-current"
+                type="number"
+                formControlName="current"
+                min="0" />
+            </div>
+          </div>
+          <div class="g-col sm6">
+            <div class="input-row p-b4">
+              <label for="unit-count">Number of models</label>
+              <input
+                id="unit-count"
+                type="number"
+                formControlName="max"
+                min="0" />
+            </div>
+          </div>
+        </div>
+
+        <div class="input-row p-b4">
+          <label for="unit-year">Painted in year</label>
+          <input
+            id="unit-year"
+            type="number"
+            formControlName="metaYear"
+            min="0" />
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer d-flex gap-4 justify-content-end">
+      <button class="btn btn-secondary" (click)="close()">Cancel</button>
+      <button
+        class="btn btn-primary"
+        (click)="submit()"
+        [disabled]="form.invalid">
+        Submit
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,7 @@
 import { ActionReducer, INIT, UPDATE } from '@ngrx/store';
 
+type TypeId<T> = () => T;
+type InitialState<T> = Partial<T> | TypeId<Partial<T>> | void;
 // console.log all actions
 export const storeInLocalStorage =
   (...features: string[]) =>
@@ -32,9 +34,8 @@ export const storeInLocalStorage =
     };
   };
 
-export function getInitialAppState(): unknown | undefined {
+export function getInitialAppState(): InitialState<[]> | undefined {
   const previousSettings = localStorage.getItem('pos.system');
-  console.log(previousSettings);
   if (previousSettings !== null && previousSettings !== undefined) {
     return JSON.parse(previousSettings);
   }

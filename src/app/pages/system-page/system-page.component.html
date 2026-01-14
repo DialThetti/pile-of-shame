@@ -10,7 +10,9 @@
       </h1>
     </div>
     <p class="muted-text" style="height: 1rem"></p>
-    <h2>Overall</h2>
+    <div class="d-flex justify-content-between p-y4">
+      <h2>Overall</h2>
+    </div>
     <app-progress-card
       variant="Wide"
       [progress]="progresses()"></app-progress-card>
@@ -28,7 +30,7 @@
             <app-unit-accordion
               [units]="fraction.units"
               [systemId]="id() ?? ''"
-              [fractionId]="fraction.name"></app-unit-accordion>
+              [fractionId]="fraction.id"></app-unit-accordion>
           </div>
         }
         <div class="g-col xs12 md6 lg3 d-flex">

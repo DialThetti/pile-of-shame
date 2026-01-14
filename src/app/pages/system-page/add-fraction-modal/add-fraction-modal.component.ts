@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { SystemActions } from '../../../core/state/system/system.actions';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-add-fraction-modal',
@@ -28,7 +29,11 @@ export class AddFractionModalComponent {
   submit() {
     this.store.dispatch(
       SystemActions.saveFraction({
-        name: this.form.controls.name.value!,
+        fraction: {
+          name: this.form.controls.name.value!,
+          id: uuid(),
+          units: [],
+        },
         systemId: this.systemId,
       })
     );

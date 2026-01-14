@@ -26,7 +26,6 @@ export class SystemPageComponent {
   );
 
   progresses = computed(() => {
-    console.log(this.system());
     return (
       this.system()?.fractions.map(entry => this.getFractionProcess(entry)) ??
       []

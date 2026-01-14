@@ -1,27 +1,25 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardPageComponent } from './dashboard-page.component';
+import { UnitModalComponent } from './unit-modal.component';
 import { provideMockStore } from '@ngrx/store/testing';
 import {
   initialState,
   systemStateKey,
-} from '../../core/state/system/system.reducer';
-import { provideRouter } from '@angular/router';
+} from '../../../core/state/system/system.reducer';
 
-describe('DashboardPageComponent', () => {
-  let component: DashboardPageComponent;
-  let fixture: ComponentFixture<DashboardPageComponent>;
+describe('UnitModalComponent', () => {
+  let component: UnitModalComponent;
+  let fixture: ComponentFixture<UnitModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [
-        provideRouter([]),
         provideMockStore({ initialState: { [systemStateKey]: initialState } }),
       ],
-      imports: [DashboardPageComponent],
+      imports: [UnitModalComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DashboardPageComponent);
+    fixture = TestBed.createComponent(UnitModalComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
