@@ -1,57 +1,63 @@
-@if(collapsed){
-<div class="card appendix-bottom">
-  <div class="d-flex justify-content-between p-y2">
-    <button class="btn btn-ghost w100" (click)="collapsed = !collapsed">
-      Show more<i class="p-l2 bi bi-chevron-double-down"></i>
-    </button>
+@if (collapsed) {
+  <div class="card appendix-bottom">
+    <div class="d-flex justify-content-between p-y2">
+      <button class="btn btn-ghost w100" (click)="collapsed = !collapsed">
+        Show more<i class="p-l2 bi bi-chevron-double-down"></i>
+      </button>
+    </div>
   </div>
-</div>
-}@else {
-
-<div class="card appendix-bottom">
-  <div class="d-flex justify-content-between p-y2">
-    <button class="btn btn-ghost w100" (click)="collapsed = !collapsed">
-      Show less<i class="p-l2 bi bi-chevron-double-up"></i>
-    </button>
+} @else {
+  <div class="card appendix-bottom">
+    <div class="d-flex justify-content-between p-y2">
+      <button class="btn btn-ghost w100" (click)="collapsed = !collapsed">
+        Show less<i class="p-l2 bi bi-chevron-double-up"></i>
+      </button>
+    </div>
+    <ul>
+      @for (unit of units; track $index) {
+        <li>
+          <div class="d-flex justify-content-between">
+            <span>
+              <span>
+                {{ unit.name }}
+              </span>
+              @if (unit.meta.paintingYear) {
+                <span class="muted-text"
+                  >(<i class="bi bi-clock"></i>{{ unit.meta.paintingYear }})
+                </span>
+              }
+              <button class="btn btn-ghost" (click)="addMeta(unit)">
+                <i class="bi bi-pencil"></i>
+              </button>
+            </span>
+            <span>
+              {{ unit.progress.current }}/{{ unit.progress.max }}
+              <button class="btn btn-primary circle" (click)="increment(unit)">
+                <i class="bi bi-plus"></i></button
+            ></span>
+          </div>
+          <div>
+            <div class="progress-bar slim w100">
+              <div
+                class="entry"
+                [ngStyle]="{
+                  width:
+                    (100 * unit.progress.current) / unit.progress.max + '%',
+                  'background-color': 'var(--color-' + ($index % 4) + ')',
+                }"></div>
+            </div>
+          </div>
+        </li>
+      }
+      <li>
+        <button class="w100 btn btn-ghost" (click)="addUnit.open()">
+          Add Unit
+        </button>
+      </li>
+    </ul>
   </div>
-  <ul>
-    @for(unit of units; track $index){
-    <li>
-      <div class="d-flex justify-content-between">
-        <span>
-          <span>
-            {{ unit.name }}
-          </span>
-          @if(unit.meta.paintingYear){
-          <span class="muted-text">(<i class="bi bi-clock"></i>{{ unit.meta.paintingYear }}) </span>
-          }
-          <button class="btn btn-ghost">
-            <i class="bi bi-pencil" (click)="addMeta(unit)"></i>
-          </button>
-        </span>
-        <span>
-          {{ unit.progress.current }}/{{ unit.progress.max }}
-          <button class="btn btn-primary circle" (click)="increment(unit)">
-            <i class="bi bi-plus"></i></button
-        ></span>
-      </div>
-      <div>
-        <div class="progress-bar slim w100">
-          <div
-            class="entry"
-            [ngStyle]="{
-              width: (100 * unit.progress.current) / unit.progress.max + '%',
-              'background-color': 'var(--color-' + ($index % 4) + ')'
-            }"
-          ></div>
-        </div>
-      </div>
-    </li>
-    }
-    <li>
-      <button class="w100 btn btn-ghost" (click)="addUnit.open()">Add Unit</button>
-    </li>
-  </ul>
-</div>
 }
-<app-add-unit-modal #addUnit [systemId]="systemId" [fraction]="fractionId"></app-add-unit-modal>
+<app-add-unit-modal
+  #addUnit
+  [systemId]="systemId"
+  [fraction]="fractionId"></app-add-unit-modal>

@@ -2,7 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddUnitModalComponent } from './add-unit-modal.component';
 import { provideMockStore } from '@ngrx/store/testing';
-import { initialState, systemStateKey } from '../../../core/state/system/system.reducer';
+import {
+  initialState,
+  systemStateKey,
+} from '../../../core/state/system/system.reducer';
 
 describe('AddUnitModalComponent', () => {
   let component: AddUnitModalComponent;
@@ -10,7 +13,9 @@ describe('AddUnitModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [provideMockStore({ initialState: { [systemStateKey]: initialState } })],
+      providers: [
+        provideMockStore({ initialState: { [systemStateKey]: initialState } }),
+      ],
       imports: [AddUnitModalComponent],
     }).compileComponents();
 

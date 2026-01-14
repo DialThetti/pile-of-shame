@@ -1,28 +1,27 @@
 <div class="p-x2 p-y2 card {{ cardClass }}">
-  @if(name){
-  <span>{{ name }} </span>
-  } @if(isMulti(progress)){
-  <div class="m-y2 progress-bar d-flex">
-    @for(c of progress; track $index){
-    <div
-      class="entry"
-      [ngStyle]="{
-        width: (100 * c.current) / max() + '%',
-        'background-color': 'var(--color-' + ($index % 4) + ')'
-      }"
-    ></div>
-    }
-  </div>
-  }@else{
-  <div class="m-y2 progress-bar d-flex">
-    <div
-      class="entry"
-      [ngStyle]="{
-        width: (100 * progress.current) / max() + '%',
-        'background-color': 'var(--color-0)'
-      }"
-    ></div>
-  </div>
+  @if (name) {
+    <span>{{ name }} </span>
+  }
+  @if (isMulti(progress)) {
+    <div class="m-y2 progress-bar d-flex">
+      @for (c of progress; track $index) {
+        <div
+          class="entry"
+          [ngStyle]="{
+            width: (100 * c.current) / max() + '%',
+            'background-color': 'var(--color-' + ($index % 4) + ')',
+          }"></div>
+      }
+    </div>
+  } @else {
+    <div class="m-y2 progress-bar d-flex">
+      <div
+        class="entry"
+        [ngStyle]="{
+          width: (100 * progress.current) / max() + '%',
+          'background-color': 'var(--color-0)',
+        }"></div>
+    </div>
   }
   <div class="p-y4">
     <div class="d-flex justify-content-between">

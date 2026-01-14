@@ -5,13 +5,13 @@ const selectSystemFeature = createFeatureSelector<SystemState>(systemStateKey);
 
 const { selectEntities } = systemAdapter.getSelectors(selectSystemFeature);
 
-const selectExistingEntities = createSelector(selectEntities, (entities) =>
+const selectExistingEntities = createSelector(selectEntities, entities =>
   Object.values(entities)
-    .filter((entity) => entity !== undefined)
+    .filter(entity => entity !== undefined)
     .sort((a, b) => a.id.localeCompare(b.id))
 );
 const selectEntity = (id: string | undefined) =>
-  createSelector(selectEntities, (dict) => (id ? dict[id] : undefined));
+  createSelector(selectEntities, dict => (id ? dict[id] : undefined));
 
 export const SystemSelectors = {
   selectEntities: selectExistingEntities,

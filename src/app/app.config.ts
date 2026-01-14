@@ -1,9 +1,15 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+} from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideState, provideStore } from '@ngrx/store';
-import { systemReducer, systemStateKey } from './core/state/system/system.reducer';
+import {
+  systemReducer,
+  systemStateKey,
+} from './core/state/system/system.reducer';
 import {
   getInitialAppState,
   storeInLocalStorage,

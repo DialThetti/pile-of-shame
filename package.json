@@ -8,21 +8,12 @@
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test:ci": "jest",
-    "github-build": "ng build --configuration production --base-href 'https://dialthetti.github.io/pile-of-shame/' "
+    "github-build": "ng build --configuration production --base-href 'https://dialthetti.github.io/pile-of-shame/' ",
+    "lint": "ng lint",
+    "format": "prettier --write .",
+    "lint:format": "prettier --check ."
   },
   "type": "module",
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true,
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
-      }
-    ]
-  },
   "private": true,
   "packageManager": "npm@10.9.4",
   "dependencies": {
@@ -43,7 +34,11 @@
     "@angular/cli": "^21.0.3",
     "@angular/compiler-cli": "^21.0.8",
     "@types/jest": "^30.0.0",
+    "angular-eslint": "21.1.0",
     "babel-jest": "^30.2.0",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
     "jest": "^30.2.0",
     "jest-environment-jsdom": "^29.5.0",
     "jest-junit": "^16.0.0",
@@ -51,7 +46,10 @@
     "jest-preset-angular": "~16.0.0",
     "jsdom": "^27.1.0",
     "ng-mocks": "^14.15.0",
+    "prettier": "^3.7.4",
+    "prettier-eslint": "^16.4.2",
     "typescript": "~5.9.2",
+    "typescript-eslint": "8.47.0",
     "vitest": "^4.0.8"
   },
   "overrides": {
