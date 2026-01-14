@@ -4,7 +4,7 @@ import { createReducer, on } from '@ngrx/store';
 import { SystemActions } from './system.actions';
 
 export const systemStateKey = 'system';
-export interface SystemState extends EntityState<System> {}
+export type SystemState = EntityState<System>;
 
 export const systemAdapter = createEntityAdapter<System>({
   selectId: (system) => system.id,

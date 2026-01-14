@@ -32,7 +32,7 @@ export const storeInLocalStorage =
     };
   };
 
-export function getInitialAppState(): any | undefined {
+export function getInitialAppState(): unknown | undefined {
   const previousSettings = localStorage.getItem('pos.system');
   console.log(previousSettings);
   if (previousSettings !== null && previousSettings !== undefined) {
