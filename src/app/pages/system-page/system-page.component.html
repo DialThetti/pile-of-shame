@@ -1,42 +1,48 @@
 <main class="p-x4">
-  @if(system(); as currentSystem){
-  <div class="d-flex justify-content-between p-y4 gap-4">
-    <h1>
-      <button class="btn btn-ghost" routerLink="../.."><i class="bi bi-chevron-left"></i></button
-      ><span>
-        {{ currentSystem.name }}
-      </span>
-    </h1>
-  </div>
-  <p class="muted-text" style="height: 1rem"></p>
-  <h2>Overall</h2>
-  <app-progress-card variant="Wide" [progress]="progresses()"></app-progress-card>
-  <div class="d-flex justify-content-between p-y4">
-    <h2>Fractions</h2>
-  </div>
-  <div>
-    <div class="grid gap-4">
-      @for (fraction of system()?.fractions??[]; track $index) {
-      <div class="g-col xs12 md6 lg3">
-        <app-progress-card
-          cardClass="appendix-top"
-          [name]="fraction.name"
-          [progress]="getFractionProcess(fraction)"
-        ></app-progress-card>
-        <app-unit-accordion
-          [units]="fraction.units"
-          [systemId]="id() ?? ''"
-          [fractionId]="fraction.name"
-        ></app-unit-accordion>
-      </div>
-
-      }
-      <div class="g-col xs12 md6 lg3 d-flex">
-        <button (click)="addFraction.open()" class="btn w100 add-button">Add Fraction</button>
+  @if (system(); as currentSystem) {
+    <div class="d-flex justify-content-between p-y4 gap-4">
+      <h1>
+        <button class="btn btn-ghost" routerLink="../..">
+          <i class="bi bi-chevron-left"></i></button
+        ><span>
+          {{ currentSystem.name }}
+        </span>
+      </h1>
+    </div>
+    <p class="muted-text" style="height: 1rem"></p>
+    <div class="d-flex justify-content-between p-y4">
+      <h2>Overall</h2>
+    </div>
+    <app-progress-card
+      variant="Wide"
+      [progress]="progresses()"></app-progress-card>
+    <div class="d-flex justify-content-between p-y4">
+      <h2>Fractions</h2>
+    </div>
+    <div>
+      <div class="grid gap-4">
+        @for (fraction of system()?.fractions ?? []; track $index) {
+          <div class="g-col xs12 md6 lg3">
+            <app-progress-card
+              cardClass="appendix-top"
+              [name]="fraction.name"
+              [progress]="getFractionProcess(fraction)"></app-progress-card>
+            <app-unit-accordion
+              [units]="fraction.units"
+              [systemId]="id() ?? ''"
+              [fractionId]="fraction.id"></app-unit-accordion>
+          </div>
+        }
+        <div class="g-col xs12 md6 lg3 d-flex">
+          <button (click)="addFraction.open()" class="btn w100 add-button">
+            Add Fraction
+          </button>
+        </div>
       </div>
     </div>
-  </div>
   }
 </main>
 
-<app-add-fraction-modal #addFraction [systemId]="id() ?? ''"></app-add-fraction-modal>
+<app-add-fraction-modal
+  #addFraction
+  [systemId]="id() ?? ''"></app-add-fraction-modal>

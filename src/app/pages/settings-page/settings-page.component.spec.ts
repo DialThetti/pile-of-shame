@@ -1,26 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddSystemModalComponent } from './add-system-modal.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { SettingsPageComponent } from './settings-page.component';
 import { provideMockStore } from '@ngrx/store/testing';
 import {
   initialState,
   systemStateKey,
-} from '../../../core/state/system/system.reducer';
+} from '../../core/state/system/system.reducer';
+import { provideRouter } from '@angular/router';
 
-describe('AddSystemModalComponent', () => {
-  let component: AddSystemModalComponent;
-  let fixture: ComponentFixture<AddSystemModalComponent>;
+describe('SettingsPageComponent', () => {
+  let component: SettingsPageComponent;
+  let fixture: ComponentFixture<SettingsPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [
+        provideRouter([]),
         provideMockStore({ initialState: { [systemStateKey]: initialState } }),
       ],
-      imports: [AddSystemModalComponent, ReactiveFormsModule],
+      imports: [SettingsPageComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AddSystemModalComponent);
+    fixture = TestBed.createComponent(SettingsPageComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

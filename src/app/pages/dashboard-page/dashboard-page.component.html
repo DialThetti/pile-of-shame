@@ -6,31 +6,35 @@
         Keep track of your achievements and on your evergrowing pile of shame.
       </p>
     </div>
-    <a
-      download="pile-of-shame_{{ now | date : 'yyyy_MM_dd' }}.json"
-      [href]="uri()"
-      class="btn btn-ghost"
-      ><i class="bi bi-cloud-download p-r2"></i>Export</a
-    >
+    <div>
+      <a class="btn btn-ghost" routerLink="settings"
+        ><i class="bi bi-gear m-r2"></i>Settings</a
+      >
+    </div>
   </div>
-  <h2>Overall</h2>
-  <app-progress-card variant="Wide" [progress]="progresses()"></app-progress-card>
+  <div class="d-flex justify-content-between p-y4">
+    <h2>Overall</h2>
+  </div>
+  <app-progress-card
+    variant="Wide"
+    [progress]="progresses()"></app-progress-card>
   <div class="d-flex justify-content-between p-y4">
     <h2>Systems</h2>
   </div>
   <div class="grid gap-4">
     @for (system of data(); track $index) {
-    <div class="g-col xs12 md6 lg3">
-      <a routerLink="systems/{{ system.id }}">
-        <app-progress-card
-          [name]="system.name"
-          [progress]="getProcesses(system)"
-        ></app-progress-card>
-      </a>
-    </div>
+      <div class="g-col xs12 md6 lg3">
+        <a routerLink="systems/{{ system.id }}">
+          <app-progress-card
+            [name]="system.name"
+            [progress]="getProcesses(system)"></app-progress-card>
+        </a>
+      </div>
     }
     <div class="g-col xs12 md6 lg3 d-flex">
-      <button (click)="addSystem.open()" class="btn w100 add-button">Add system</button>
+      <button (click)="addSystem.open()" class="btn w100 add-button">
+        Add system
+      </button>
     </div>
   </div>
 </main>

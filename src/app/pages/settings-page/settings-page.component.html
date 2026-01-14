@@ -1,0 +1,45 @@
+<main class="p-x4">
+  <div class="grid-1 gap-y4">
+    <div class="d-flex justify-content-between p-y4 gap-4">
+      <h1>
+        <button class="btn btn-ghost" routerLink="..">
+          <i class="bi bi-chevron-left"></i></button
+        ><span> Settings </span>
+      </h1>
+    </div>
+    <h2>Data management</h2>
+    <p class="p">
+      This tool is still in development. All data is stored in the browser, no
+      data is sent to any server or shared with anyone. So please keep in mind
+      that clearing your browser data can mean data loss! To prevent this, you
+      can export and download your data periodically.
+    </p>
+    <div style="width: 150px">
+      <a
+        download="pile-of-shame_{{ now | date: 'yyyy_MM_dd' }}.json"
+        [href]="uri()"
+        class="btn btn-ghost"
+        ><i class="bi bi-cloud-download p-r2"></i>Export</a
+      >
+    </div>
+    <p>Downloaded data can also be reimported here:</p>
+    <form [formGroup]="form">
+      <input
+        id="import-file"
+        formControlName="file"
+        type="file"
+        name="uplaod"
+        accept=".json" />
+    </form>
+    <p style="border-bottom: 1px solid var(--border)"></p>
+    <h2>Danger zone</h2>
+    <p>
+      Sometimes it is necessary to start all over. Please keep in mind clicking
+      here will wipe all your data. please export your last data first, before
+      clicking here.
+    </p>
+    <div class="d-flex">
+      <button class="btn btn-danger" (click)="reset()">Reset data</button>
+    </div>
+  </div>
+</main>

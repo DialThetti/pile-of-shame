@@ -1,9 +1,14 @@
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { SystemActions } from '../../../core/state/system/system.actions';
-
+import { v4 as uuid } from 'uuid';
 @Component({
   selector: 'app-add-system-modal',
   imports: [NgClass, ReactiveFormsModule],
@@ -30,7 +35,7 @@ export class AddSystemModalComponent {
         system: {
           name,
           fractions: [],
-          id: name.toLocaleLowerCase().replaceAll(' ', '-'),
+          id: uuid(),
         },
       })
     );

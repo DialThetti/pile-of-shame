@@ -28,3 +28,7 @@ jobs:
       # {5}
       - name: Run tests
         run: npm run test:ci
+      - name: Run linting check
+        run: npm run lint
+      - name: Run format check
+        run: npm run lint:format

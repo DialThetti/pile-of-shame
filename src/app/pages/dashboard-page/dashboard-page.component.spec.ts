@@ -2,7 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardPageComponent } from './dashboard-page.component';
 import { provideMockStore } from '@ngrx/store/testing';
-import { initialState, systemStateKey } from '../../core/state/system/system.reducer';
+import {
+  initialState,
+  systemStateKey,
+} from '../../core/state/system/system.reducer';
+import { provideRouter } from '@angular/router';
 
 describe('DashboardPageComponent', () => {
   let component: DashboardPageComponent;
@@ -10,7 +14,10 @@ describe('DashboardPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [provideMockStore({ initialState: { [systemStateKey]: initialState } })],
+      providers: [
+        provideRouter([]),
+        provideMockStore({ initialState: { [systemStateKey]: initialState } }),
+      ],
       imports: [DashboardPageComponent],
     }).compileComponents();
 

@@ -1,6 +1,7 @@
 .modal {
   position: absolute;
   width: 600px;
+  max-width: 100%;
   background-color: var(--popover-background);
   color: var(--popover-foreground);
   -webkit-box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.4);
@@ -22,11 +23,12 @@
 }
 
 .background-layer {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  overflow: hidden;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;

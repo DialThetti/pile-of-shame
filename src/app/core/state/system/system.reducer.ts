@@ -4,16 +4,16 @@ import { createReducer, on } from '@ngrx/store';
 import { SystemActions } from './system.actions';
 
 export const systemStateKey = 'system';
-export interface SystemState extends EntityState<System> {}
+export type SystemState = EntityState<System>;
 
 export const systemAdapter = createEntityAdapter<System>({
-  selectId: (system) => system.id,
+  selectId: system => system.id,
 });
 
 export const initialState: SystemState = systemAdapter.getInitialState({});
 
-function upsertList<T extends { name: string }>(list: T[], o: T): T[] {
-  const u = list.findIndex((l) => l.name === o.name);
+function upsertList<T extends { id: string }>(list: T[], o: T): T[] {
+  const u = list.findIndex(l => l.id === o.id);
   if (u !== -1) {
     list[u] = o;
   } else {
@@ -24,19 +24,24 @@ function upsertList<T extends { name: string }>(list: T[], o: T): T[] {
 
 export const systemReducer = createReducer(
   initialState,
-  on(SystemActions.saveSystem, (state, { system }) => systemAdapter.upsertOne(system, state)),
+  on(SystemActions.saveSystem, (state, { system }) =>
+    systemAdapter.upsertOne(system, state)
+  ),
 
-  on(SystemActions.saveFraction, (state, { name, systemId }) => {
+  on(SystemActions.saveFraction, (state, { systemId, fraction }) => {
     const system = state.entities[systemId]!;
     return systemAdapter.upsertOne(
-      { ...system, fractions: upsertList([...system.fractions], { name, units: [] }) },
+      {
+        ...system,
+        fractions: upsertList([...system.fractions], fraction),
+      },
       state
     );
   }),
 
   on(SystemActions.saveUnits, (state, { unit, fractionId, systemId }) => {
     const system = state.entities[systemId]!;
-    let fraction = system.fractions.find((f) => f.name === fractionId)!;
+    let fraction = system.fractions.find(f => f.id === fractionId)!;
     fraction = { ...fraction, units: upsertList([...fraction.units], unit) };
     return systemAdapter.upsertOne(
       { ...system, fractions: upsertList([...system.fractions], fraction) },

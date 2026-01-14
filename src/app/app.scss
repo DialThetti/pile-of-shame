@@ -1,0 +1,13 @@
+footer {
+  position: sticky;
+  height: 4rem;
+  background-color: var(--muted-background);
+  padding-inline: 1rem;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+div {
+  min-height: calc(100vh - 4rem);
+}
