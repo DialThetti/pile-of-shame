@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { ProgressCardComponent } from '../../shared/progress-card/progress-card.component';
 import { AddSystemModalComponent } from './add-system-modal/add-system-modal.component';
 import { RouterLink } from '@angular/router';

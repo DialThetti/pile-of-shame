@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UnitAccordionComponent } from './unit-accordion.component';
+import { provideMockStore } from '@ngrx/store/testing';
+import { initialState, systemStateKey } from '../../../core/state/system/system.reducer';
 
 describe('UnitAccordionComponent', () => {
   let component: UnitAccordionComponent;
@@ -8,9 +10,9 @@ describe('UnitAccordionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UnitAccordionComponent]
-    })
-    .compileComponents();
+      providers: [provideMockStore({ initialState: { [systemStateKey]: initialState } })],
+      imports: [UnitAccordionComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(UnitAccordionComponent);
     component = fixture.componentInstance;
