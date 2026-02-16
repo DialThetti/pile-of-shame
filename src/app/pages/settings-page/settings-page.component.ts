@@ -5,7 +5,7 @@ import { DatePipe } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { System } from '../../core/models/system.model';
 import { RouterLink } from '@angular/router';
-import { SystemActions } from 'src/app/core/state/system/system.actions';
+import { SystemActions } from '../../core/state/system/system.actions';
 
 @Component({
   selector: 'app-settings-page',
