@@ -6,7 +6,7 @@ import { AddFractionModalComponent } from './add-fraction-modal/add-fraction-mod
 import { UnitAccordionComponent } from './unit-accordion/unit-accordion.component';
 import { Store } from '@ngrx/store';
 import { SystemSelectors } from '../../core/state/system/system.selectors';
-import { SystemActions } from 'src/app/core/state/system/system.actions';
+import { SystemActions } from '../../core/state/system/system.actions';
 
 @Component({
   selector: 'app-system-page',
