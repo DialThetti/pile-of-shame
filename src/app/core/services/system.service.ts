@@ -5,11 +5,16 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class SystemService {
+  getBaseUrl() {
+    return window.location.origin === 'http://localhost:4201'
+      ? 'http://localhost:3000'
+      : 'https://pile-of-shame-service.onrender.com';
+  }
   constructor(private httpClient: HttpClient) {}
 
   saveSystem(system: System): Observable<System> {
     return this.httpClient.post<System>(
-      'http://localhost:3000/systems/' + system.id,
+      this.getBaseUrl() + '/systems/' + system.id,
       system,
       {
         headers: {
@@ -21,7 +26,7 @@ export class SystemService {
 
   deleteSystem(id: string): Observable<unknown> {
     return this.httpClient.delete<System>(
-      'http://localhost:3000/systems/' + id,
+      this.getBaseUrl() + '/systems/' + id,
 
       {
         headers: {
@@ -31,7 +36,7 @@ export class SystemService {
     );
   }
   loadSystems(): Observable<System[]> {
-    return this.httpClient.get<System[]>('http://localhost:3000/systems', {
+    return this.httpClient.get<System[]>(this.getBaseUrl() + '/systems', {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem('auth')}`,
       },
