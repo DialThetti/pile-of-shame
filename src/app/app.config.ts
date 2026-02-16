@@ -11,23 +11,18 @@ import {
   systemReducer,
   systemStateKey,
 } from './core/state/system/system.reducer';
-import {
-  getInitialAppState,
-  storeInLocalStorage,
-} from './core/state/store-in-localstorage.reducer';
-import { provideStoreDevtools } from '@ngrx/store-devtools';
 
-const initialState = getInitialAppState();
+import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { provideEffects } from '@ngrx/effects';
+import { SystemEffect } from './core/state/system/system.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes, withComponentInputBinding()),
     provideState({ name: systemStateKey, reducer: systemReducer }),
-    provideStore([], {
-      metaReducers: [storeInLocalStorage(systemStateKey)],
-      initialState,
-    }),
+    provideStore([]),
+    provideEffects(SystemEffect),
     provideStoreDevtools({
       name: '[DialThetti] Pile of shame',
       maxAge: 25, // Retains last 25 states

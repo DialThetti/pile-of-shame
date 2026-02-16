@@ -5,6 +5,7 @@ import { DatePipe } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { System } from '../../core/models/system.model';
 import { RouterLink } from '@angular/router';
+import { SystemActions } from 'src/app/core/state/system/system.actions';
 
 @Component({
   selector: 'app-settings-page',
@@ -52,8 +53,16 @@ export class SettingsPageComponent {
         ),
       },
     };
+    storing.system.ids.forEach((id, index) => {
+      const system = storing.system.entities[id];
+      setTimeout(
+        () => this.store.dispatch(SystemActions.saveSystem({ system })),
+        index * 3000
+      );
+    });
+
     localStorage.setItem('pos.system', JSON.stringify(storing));
-    window.location.href = window.location.origin;
+    //window.location.href = window.location.origin;
   }
 
   reset() {
