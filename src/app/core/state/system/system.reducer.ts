@@ -28,6 +28,9 @@ export const systemReducer = createReducer(
     systemAdapter.upsertOne(system, state)
   ),
 
+  on(SystemActions.loadSystemsSuccess, (state, { systems }) =>
+    systemAdapter.upsertMany(systems, state)
+  ),
   on(SystemActions.saveFraction, (state, { systemId, fraction }) => {
     const system = state.entities[systemId]!;
     return systemAdapter.upsertOne(

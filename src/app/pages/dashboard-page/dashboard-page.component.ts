@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { Progress, System } from '../../core/models/system.model';
 import { Store } from '@ngrx/store';
 import { SystemSelectors } from '../../core/state/system/system.selectors';
+import { SystemActions } from 'src/app/core/state/system/system.actions';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -19,7 +20,9 @@ export class DashboardPageComponent {
     () => this.data()?.map(entry => this.getProcesses(entry)) ?? []
   );
 
-  constructor(private store: Store) {}
+  constructor(private store: Store) {
+    store.dispatch(SystemActions.loadSystems());
+  }
 
   getProcesses(system: System): Progress {
     return system.fractions
