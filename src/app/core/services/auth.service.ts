@@ -1,4 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { SystemActions } from '../state/system/system.actions';
 
 declare const google: any;
 
@@ -6,7 +8,10 @@ declare const google: any;
 export class AuthService {
   hidden = false;
 
-  constructor(private ngZone: NgZone) {}
+  constructor(
+    private ngZone: NgZone,
+    private store: Store
+  ) {}
 
   prompt() {
     console.log('prompting');
@@ -24,14 +29,12 @@ export class AuthService {
       document.getElementById('google-signin-button'),
       { theme: 'outline', size: 'large' } // customization attributes
     );
-    console.log(google);
 
     google.accounts.id.prompt(); // also display the One Tap dialog
   }
 
   handleCredentialResponse(response: any) {
     // response.credential is the JWT token
-    console.log('Encoded JWT ID token: ', response.credential);
     window.localStorage.setItem('auth', response.credential);
     // You can decode the JWT token here or send it to your backend for verification
     // For demonstration, we'll just log it
@@ -39,7 +42,7 @@ export class AuthService {
     // If using NgZone, ensure any UI updates are run inside Angular's zone
     this.ngZone.run(() => {
       // Update your application state here, e.g., store user info, navigate, etc.
-      console.log('logged in');
+      this.store.dispatch(SystemActions.loadSystems());
     });
   }
 }

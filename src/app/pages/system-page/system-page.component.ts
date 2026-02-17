@@ -7,6 +7,7 @@ import { UnitAccordionComponent } from './unit-accordion/unit-accordion.componen
 import { Store } from '@ngrx/store';
 import { SystemSelectors } from '../../core/state/system/system.selectors';
 import { SystemActions } from '../../core/state/system/system.actions';
+import { LoadingSpinnerComponent } from '../../shared/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-system-page',
@@ -15,12 +16,14 @@ import { SystemActions } from '../../core/state/system/system.actions';
     RouterLink,
     AddFractionModalComponent,
     UnitAccordionComponent,
+    LoadingSpinnerComponent,
   ],
   templateUrl: './system-page.component.html',
   styleUrl: './system-page.component.scss',
 })
 export class SystemPageComponent {
   id = input<string>();
+  loading = this.store.selectSignal(SystemSelectors.isLoading);
 
   system = computed(() =>
     this.store.selectSignal(SystemSelectors.selectEntity(this.id()))()

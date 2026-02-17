@@ -14,7 +14,9 @@
     </div>
   </div>
   @if (loading()) {
-    <p class="muted-text">loading....</p>
+    <p class="muted-text" style="height: calc(100vh - 200px)">
+      <app-loading-spinner></app-loading-spinner>
+    </p>
   } @else {
     <div class="d-flex justify-content-between p-y4">
       <h2>Overall</h2>
