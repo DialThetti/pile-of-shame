@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, effect, input } from '@angular/core';
 import { ProgressCardComponent } from '../../shared/progress-card/progress-card.component';
 import { RouterLink } from '@angular/router';
 import { Fraction, Progress } from '../../core/models/system.model';
@@ -7,6 +7,7 @@ import { UnitAccordionComponent } from './unit-accordion/unit-accordion.componen
 import { Store } from '@ngrx/store';
 import { SystemSelectors } from '../../core/state/system/system.selectors';
 import { SystemActions } from '../../core/state/system/system.actions';
+import { LoadingSpinnerComponent } from '../../shared/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-system-page',
@@ -15,12 +16,14 @@ import { SystemActions } from '../../core/state/system/system.actions';
     RouterLink,
     AddFractionModalComponent,
     UnitAccordionComponent,
+    LoadingSpinnerComponent,
   ],
   templateUrl: './system-page.component.html',
   styleUrl: './system-page.component.scss',
 })
 export class SystemPageComponent {
   id = input<string>();
+  loading = this.store.selectSignal(SystemSelectors.isLoading);
 
   system = computed(() =>
     this.store.selectSignal(SystemSelectors.selectEntity(this.id()))()
@@ -33,7 +36,11 @@ export class SystemPageComponent {
     );
   });
 
-  constructor(private store: Store) {}
+  constructor(private store: Store) {
+    effect(() => {
+      store.dispatch(SystemActions.loadSystems());
+    });
+  }
 
   getFractionProcess(fraction: Fraction): Progress {
     return fraction.units
