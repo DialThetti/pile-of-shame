@@ -3,7 +3,11 @@ import {
   isDevMode,
   provideBrowserGlobalErrorListeners,
 } from '@angular/core';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import {
+  provideRouter,
+  withComponentInputBinding,
+  withHashLocation,
+} from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideState, provideStore } from '@ngrx/store';
@@ -15,11 +19,14 @@ import {
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
 import { SystemEffect } from './core/state/system/system.effects';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes, withComponentInputBinding()),
+    provideRouter(routes, withComponentInputBinding(), withHashLocation()),
+    provideHttpClient(withInterceptors([authInterceptor])),
     provideState({ name: systemStateKey, reducer: systemReducer }),
     provideStore([]),
     provideEffects(SystemEffect),
