@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable, NgZone } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { SystemActions } from '../state/system/system.actions';
@@ -14,7 +15,6 @@ export class AuthService {
   ) {}
 
   prompt() {
-    console.log('prompting');
     if (this.hidden) {
       return;
     }
