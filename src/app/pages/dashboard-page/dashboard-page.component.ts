@@ -6,10 +6,16 @@ import { Progress, System } from '../../core/models/system.model';
 import { Store } from '@ngrx/store';
 import { SystemSelectors } from '../../core/state/system/system.selectors';
 import { SystemActions } from '../../core/state/system/system.actions';
+import { LoadingSpinnerComponent } from '../../shared/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-dashboard-page',
-  imports: [ProgressCardComponent, AddSystemModalComponent, RouterLink],
+  imports: [
+    ProgressCardComponent,
+    AddSystemModalComponent,
+    RouterLink,
+    LoadingSpinnerComponent,
+  ],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.scss',
 })
