@@ -10,10 +10,16 @@ const selectExistingEntities = createSelector(selectEntities, entities =>
     .filter(entity => entity !== undefined)
     .sort((a, b) => a.id.localeCompare(b.id))
 );
+
+const isLoading = createSelector(
+  selectSystemFeature,
+  s => s.ids.length === 0 && s.loading
+);
 const selectEntity = (id: string | undefined) =>
   createSelector(selectEntities, dict => (id ? dict[id] : undefined));
 
 export const SystemSelectors = {
   selectEntities: selectExistingEntities,
   selectEntity,
+  isLoading,
 };

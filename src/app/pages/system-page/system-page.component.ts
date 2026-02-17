@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, effect, input } from '@angular/core';
 import { ProgressCardComponent } from '../../shared/progress-card/progress-card.component';
 import { RouterLink } from '@angular/router';
 import { Fraction, Progress } from '../../core/models/system.model';
@@ -33,7 +33,11 @@ export class SystemPageComponent {
     );
   });
 
-  constructor(private store: Store) {}
+  constructor(private store: Store) {
+    effect(() => {
+      store.dispatch(SystemActions.loadSystems());
+    });
+  }
 
   getFractionProcess(fraction: Fraction): Progress {
     return fraction.units

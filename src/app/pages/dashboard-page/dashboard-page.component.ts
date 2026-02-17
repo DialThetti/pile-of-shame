@@ -15,7 +15,7 @@ import { SystemActions } from '../../core/state/system/system.actions';
 })
 export class DashboardPageComponent {
   data = this.store.selectSignal(SystemSelectors.selectEntities);
-
+  loading = this.store.selectSignal(SystemSelectors.isLoading);
   progresses = computed(
     () => this.data()?.map(entry => this.getProcesses(entry)) ?? []
   );

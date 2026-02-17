@@ -11,5 +11,6 @@ export const SystemActions = createActionGroup({
     'save Units': props<{ systemId: string; fractionId: string; unit: Unit }>(),
     'load Systems': emptyProps(),
     'load Systems success': props<{ systems: System[] }>(),
+    'load Systems failed': emptyProps(),
   },
 });

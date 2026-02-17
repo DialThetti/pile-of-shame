@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { SystemActions } from './system.actions';
-import { filter, map, switchMap } from 'rxjs';
+import { catchError, filter, map, of, switchMap } from 'rxjs';
 import { SystemService } from '../../services/system.service';
 import { Store } from '@ngrx/store';
 import { SystemSelectors } from './system.selectors';
+import { AuthService } from '../../services/auth.service';
 
 @Injectable()
 export class SystemEffect {
   constructor(
     private actions$: Actions,
     private systemService: SystemService,
-    private store: Store
+    private store: Store,
+    private authService: AuthService
   ) {}
 
   onSave$ = createEffect(() => {
@@ -50,7 +52,8 @@ export class SystemEffect {
     return this.actions$.pipe(
       ofType(SystemActions.loadSystems),
       switchMap(() => this.systemService.loadSystems()),
-      map(systems => SystemActions.loadSystemsSuccess({ systems }))
+      map(systems => SystemActions.loadSystemsSuccess({ systems })),
+      catchError(() => of(SystemActions.loadSystemsFailed()))
     );
   });
 
@@ -61,4 +64,14 @@ export class SystemEffect {
       map(() => SystemActions.loadSystems())
     );
   });
+
+  promptWhen401$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(SystemActions.loadSystemsFailed),
+        map(() => this.authService.prompt())
+      );
+    },
+    { dispatch: false }
+  );
 }

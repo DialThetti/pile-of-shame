@@ -4,13 +4,17 @@ import { createReducer, on } from '@ngrx/store';
 import { SystemActions } from './system.actions';
 
 export const systemStateKey = 'system';
-export type SystemState = EntityState<System>;
+export type SystemState = EntityState<System> & {
+  loading: boolean;
+};
 
 export const systemAdapter = createEntityAdapter<System>({
   selectId: system => system.id,
 });
 
-export const initialState: SystemState = systemAdapter.getInitialState({});
+export const initialState: SystemState = systemAdapter.getInitialState({
+  loading: false,
+});
 
 function upsertList<T extends { id: string }>(list: T[], o: T): T[] {
   const u = list.findIndex(l => l.id === o.id);
@@ -28,9 +32,12 @@ export const systemReducer = createReducer(
     systemAdapter.upsertOne(system, state)
   ),
 
+  on(SystemActions.loadSystems, state => ({ ...state, loading: true })),
   on(SystemActions.loadSystemsSuccess, (state, { systems }) =>
-    systemAdapter.upsertMany(systems, state)
+    systemAdapter.upsertMany(systems, { ...state, loading: false })
   ),
+  on(SystemActions.loadSystemsFailed, state => ({ ...state, loading: false })),
+
   on(SystemActions.saveFraction, (state, { systemId, fraction }) => {
     const system = state.entities[systemId]!;
     return systemAdapter.upsertOne(
