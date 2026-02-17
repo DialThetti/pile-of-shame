@@ -6,7 +6,7 @@ import { Progress, System } from '../../core/models/system.model';
 import { Store } from '@ngrx/store';
 import { SystemSelectors } from '../../core/state/system/system.selectors';
 import { SystemActions } from '../../core/state/system/system.actions';
-import { LoadingSpinnerComponent } from 'src/app/shared/loading-spinner/loading-spinner.component';
+import { LoadingSpinnerComponent } from '../../shared/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-dashboard-page',
